@@ -85,5 +85,12 @@ namespace BowlingLibrary.UnitTest
             Assert.AreEqual(game.Score(), 150);
         }
 
+        [TestMethod]
+        public void RollPerfectGame()
+        {
+
+            RollMany(12, 10);
+            Assert.AreEqual(game.Score(), 300);
+        }
     }
 }

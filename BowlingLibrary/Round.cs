@@ -29,7 +29,12 @@ namespace BowlingLibrary
             int i = 0;
             for(int frame = 0; frame < 10; frame++)
             {
-                if (pinFalls[i] + pinFalls[i+1]== 10)
+                if(pinFalls[i] == 10)
+                {
+                    score += 10 + pinFalls[i + 1] + pinFalls[i + 2];
+                    i += 1;
+                }
+                else if (pinFalls[i] + pinFalls[i+1]== 10)
                 {
                     score += 10 + pinFalls[i + 2];
                     i += 1;
