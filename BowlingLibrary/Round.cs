@@ -48,23 +48,23 @@ namespace BowlingLibrary
         public int Score()
         {
             int score = 0;
-            int i = 0;
+            int frameIndex = 0;
             for(int frame = 0; frame < 10; frame++)
             {
-                if(IsStrike(i))
+                if(IsStrike(frameIndex))
                 {
-                    score += 10 + StrikeBonus(i);
-                    i += 1;
+                    score += 10 + StrikeBonus(frameIndex);
+                    frameIndex += 1;
                 }
-                else if (IsSpare(i))
+                else if (IsSpare(frameIndex))
                 {
-                    score += 10 + SpareBonus(i);
-                    i += 2;
+                    score += 10 + SpareBonus(frameIndex);
+                    frameIndex += 2;
                 }
                 else
                 {
-                    score += pinFalls[i] + pinFalls[i + 1];
-                    i += 2;
+                    score += pinFalls[frameIndex] + pinFalls[frameIndex + 1];
+                    frameIndex += 2;
                 }
                 
             }
