@@ -4,7 +4,9 @@ namespace BowlingLibrary
 {
     public class Round
     {
-        int _score;
+
+        int[] pinFalls = new int[21];
+        int rollCounter;
 
         public Round()
         {
@@ -17,13 +19,18 @@ namespace BowlingLibrary
                 
             if (pins < 0) { pins = 0; }
 
-            _score += pins;
+            pinFalls[rollCounter] = pins;
+            rollCounter++;
         }
 
         public int Score()
         {
-
-            return _score;
+            int score = 0;
+            for(int i = 0; i <pinFalls.Length; i++)
+            {
+                score += pinFalls[i];
+            }
+            return score;
         }
     }
 }

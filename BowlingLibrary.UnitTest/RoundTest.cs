@@ -7,76 +7,76 @@ namespace BowlingLibrary.UnitTest
     [TestClass]
     public class RoundTest
     {
+        Round game = new Round();
+
+
+        public void RollMany(int rolls, int pins)
+        {
+            for (int i = 0; i < rolls; i++)
+            {
+                game.Roll(pins);
+            }
+        }
 
         [TestMethod]
         public void ReturnsCorrectAmmount()
         {
+            game.Roll(8);
 
-            var bowlinground1 = new Round();
-
-            bowlinground1.Roll(8);
-
-
-            Assert.AreEqual(bowlinground1.Score(), 8);
+            Assert.AreEqual(game.Score(), 8);
         }
 
         [TestMethod]
         public void ReturnsNoMorePinsThenZero()
         {
+            game.Roll(-5);
 
-            var bowlinground1 = new Round();
-
-            bowlinground1.Roll(-5);
-
-
-            Assert.AreEqual(bowlinground1.Score(), 0);
+            Assert.AreEqual(game.Score(), 0);
         }
 
         [TestMethod]
         public void ReturnsNoMorePinsThenTen()
         {
-            var bowlinground1 = new Round();
 
-            bowlinground1.Roll(20);
+            game.Roll(20);
 
-            Assert.AreEqual(bowlinground1.Score(), 10);
+            Assert.AreEqual(game.Score(), 10);
         }
 
         [TestMethod]
         public void ReturnsScore()
         {
-            var bowlinground1 = new Round();
-            bowlinground1.Roll(20);
+            game.Roll(20);
 
-            Assert.AreEqual(bowlinground1.Score(), 10);
+            Assert.AreEqual(game.Score(), 10);
         }
 
         [TestMethod]
-        public void GutterGame()
+        public void RollGutterGame()
         {
+            RollMany(20, 0);
 
-            var bowlinground1 = new Round();
-
-            for (int i = 0; i < 20; i++)
-            {
-                bowlinground1.Roll(0);
-            }
-
-
-            Assert.AreEqual(bowlinground1.Score(), 0);
+            Assert.AreEqual(game.Score(), 0);
         }
 
         [TestMethod]
         public void RollOnes()
         {
-            var bowlinground1 = new Round();
-            for (int i = 0; i < 20; i++)
-            {
-                bowlinground1.Roll(1);
-            }
+            RollMany(20, 1);
             
-            Assert.AreEqual(bowlinground1.Score(), 20);
+            Assert.AreEqual(game.Score(), 20);
         }
+
+
+        [TestMethod]
+        public void RollSpareFirstFrame()
+        {
+            game.Roll(9);
+            game.Roll(1);
+            RollMany(18, 1);
+            Assert.AreEqual(game.Score(), 29);
+        }
+
 
     }
 }
