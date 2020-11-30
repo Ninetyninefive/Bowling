@@ -13,7 +13,13 @@ namespace Bowling
 
         public void Run()
         {
-            Console.WriteLine("Welcome to the Bowling Game!");
+            //var message = "Welcome to the Bowling Game!\n" +
+            //  "Enter number of players:";
+            //var selectPlayerAmount = ValidateAmountOfPlayers();
+
+
+
+
 
             
         }
