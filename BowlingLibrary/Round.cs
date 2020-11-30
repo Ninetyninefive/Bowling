@@ -4,27 +4,26 @@ namespace BowlingLibrary
 {
     public class Round
     {
-        private int score;
+        int _score;
 
         public Round()
         {
 
         }
 
-        public int Roll(int pins)
+        public void Roll(int pins)
         {
             if (pins > 10) { pins = 10; }
                 
             if (pins < 0) { pins = 0; }
 
-            score += pins;
-            return score;
+            _score += pins;
         }
 
         public int Score()
         {
-            
-            return 0;
+
+            return _score;
         }
     }
 }
