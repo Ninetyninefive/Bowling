@@ -26,9 +26,20 @@ namespace BowlingLibrary
         public int Score()
         {
             int score = 0;
-            for(int i = 0; i <pinFalls.Length; i++)
+            int i = 0;
+            for(int frame = 0; frame < 10; frame++)
             {
-                score += pinFalls[i];
+                if (pinFalls[i] + pinFalls[i+1]== 10)
+                {
+                    score += 10 + pinFalls[i + 2];
+                    i += 1;
+                }
+                else
+                {
+                    score += pinFalls[i] + pinFalls[i + 2];
+                    i += 1;
+                }
+                
             }
             return score;
         }
