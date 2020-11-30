@@ -92,5 +92,40 @@ namespace BowlingLibrary.UnitTest
             RollMany(12, 10);
             Assert.AreEqual(game.Score(), 300);
         }
+
+        [TestMethod]
+        public void RollNineOneSpares()
+        {
+            for(int i = 0; i < 10; i++)
+            {
+                game.Roll(9); game.Roll(1);
+            }
+            game.Roll(9);
+
+            Assert.AreEqual(game.Score(), 190);
+        }
+
+
+        [TestMethod]
+        public void RollTypicalGame()
+        {
+            game.Roll(10);
+            game.Roll(9); game.Roll(1);
+            game.Roll(5); game.Roll(5);
+            game.Roll(7); game.Roll(2);
+            game.Roll(10);
+            game.Roll(10);
+            game.Roll(10);
+            game.Roll(9); game.Roll(0);
+            game.Roll(8); game.Roll(2);
+            game.Roll(9); game.Roll(1); game.Roll(10);
+
+
+
+            Assert.AreEqual(game.Score(), 187);
+        }
+
+
+
     }
 }

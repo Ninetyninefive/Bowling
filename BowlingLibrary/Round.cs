@@ -34,15 +34,15 @@ namespace BowlingLibrary
                     score += 10 + pinFalls[i + 1] + pinFalls[i + 2];
                     i += 1;
                 }
-                else if (pinFalls[i] + pinFalls[i+1]== 10)
+                else if (pinFalls[i] + pinFalls[i+1] == 10)
                 {
                     score += 10 + pinFalls[i + 2];
-                    i += 1;
+                    i += 2;
                 }
                 else
                 {
-                    score += pinFalls[i] + pinFalls[i + 2];
-                    i += 1;
+                    score += pinFalls[i] + pinFalls[i + 1];
+                    i += 2;
                 }
                 
             }
