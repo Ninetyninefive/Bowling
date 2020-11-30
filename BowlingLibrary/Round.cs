@@ -2,7 +2,13 @@
 
 namespace BowlingLibrary
 {
-    public class Class1
+    public class Round
     {
+        
+        public int Roll(int pins)
+        {
+
+            return 0;
+        }
     }
 }

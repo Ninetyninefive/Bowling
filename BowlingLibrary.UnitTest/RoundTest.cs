@@ -16,7 +16,7 @@ namespace BowlingLibrary.UnitTest
             var actual = bowlinground1.Roll(8);
 
 
-            Assert.IsTrue(actual);
+            Assert.AreEqual(actual, 8);
         }
     }
 }
