@@ -23,18 +23,29 @@ namespace BowlingLibrary
             rollCounter++;
         }
 
+        bool IsStrike(int frameIndex)
+        {
+            return pinFalls[frameIndex] == 10;
+
+        }
+
+        bool IsSpare(int frameIndex)
+        {
+            return pinFalls[frameIndex] + pinFalls[frameIndex + 1] == 10;
+        }
+
         public int Score()
         {
             int score = 0;
             int i = 0;
             for(int frame = 0; frame < 10; frame++)
             {
-                if(pinFalls[i] == 10)
+                if(IsStrike(i))
                 {
                     score += 10 + pinFalls[i + 1] + pinFalls[i + 2];
                     i += 1;
                 }
-                else if (pinFalls[i] + pinFalls[i+1] == 10)
+                else if (IsSpare(i))
                 {
                     score += 10 + pinFalls[i + 2];
                     i += 2;
