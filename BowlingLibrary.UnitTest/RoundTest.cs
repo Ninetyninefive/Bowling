@@ -77,6 +77,13 @@ namespace BowlingLibrary.UnitTest
             Assert.AreEqual(game.Score(), 29);
         }
 
+        [TestMethod]
+        public void RollSpareEveryFrame()
+        {
+            
+            RollMany(21, 5);
+            Assert.AreEqual(game.Score(), 150);
+        }
 
     }
 }
