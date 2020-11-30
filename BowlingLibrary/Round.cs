@@ -34,6 +34,17 @@ namespace BowlingLibrary
             return pinFalls[frameIndex] + pinFalls[frameIndex + 1] == 10;
         }
 
+        int StrikeBonus(int frameIndex)
+        {
+            return pinFalls[frameIndex + 1] + pinFalls[frameIndex + 2];
+
+        }
+
+        int SpareBonus(int frameIndex)
+        {
+            return pinFalls[frameIndex + 2];
+        }
+
         public int Score()
         {
             int score = 0;
@@ -42,12 +53,12 @@ namespace BowlingLibrary
             {
                 if(IsStrike(i))
                 {
-                    score += 10 + pinFalls[i + 1] + pinFalls[i + 2];
+                    score += 10 + StrikeBonus(i);
                     i += 1;
                 }
                 else if (IsSpare(i))
                 {
-                    score += 10 + pinFalls[i + 2];
+                    score += 10 + SpareBonus(i);
                     i += 2;
                 }
                 else
