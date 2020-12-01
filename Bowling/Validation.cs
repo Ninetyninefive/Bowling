@@ -19,8 +19,11 @@ namespace Bowling
                 {
                 return inputPlayerNumber;
                 }
-
-            return 0;
+            else if(inputPlayerNumber>4)
+            {
+                return 4;
+            }
+            return 1;
         }
     }
 }

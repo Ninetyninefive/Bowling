@@ -4,96 +4,48 @@ using Bowling;
 namespace Bowling.UnitTest
 {
     [TestClass]
-    public class PlayerSelectValidation
+    public class ValidationTest
     {
         [TestMethod]
-        public void PlayerSelectionOnlyAcceptsNumbersOneToFour()
+        public void PlayerAmountReturnsValidAmount()
         {
             var newValidation = new Validation();
+            
+            Assert.AreEqual(newValidation.ValidateAmountOfPlayers(1), 1);
 
-            var actual = newValidation.ValidateAmountOfPlayers(4);
+            Assert.AreEqual(newValidation.ValidateAmountOfPlayers(2), 2);
 
-            Assert.AreEqual(actual, 4);
+            Assert.AreEqual(newValidation.ValidateAmountOfPlayers(3), 3);
+
+            Assert.AreEqual(newValidation.ValidateAmountOfPlayers(4), 4);
+
+            Assert.AreEqual(newValidation.ValidateAmountOfPlayers(-1), 1);
+
+            Assert.AreEqual(newValidation.ValidateAmountOfPlayers(5), 4);
+
+            Assert.AreEqual(newValidation.ValidateAmountOfPlayers(-99995), 1);
+
+            Assert.AreEqual(newValidation.ValidateAmountOfPlayers(999), 4);
         }
 
         [TestMethod]
-        public void PlayerSelectionOnlyAcceptsNumbersOneToFourOneTest()
+        public void PlayerSelectionSetTooLowSetOne()
         {
             var newValidation = new Validation();
 
-            var actual = newValidation.ValidateAmountOfPlayers(1);
+            var actual = newValidation.ValidateAmountOfPlayers(-1);
 
             Assert.AreEqual(actual, 1);
         }
 
         [TestMethod]
-        public void PlayerSelectionOnlyAcceptsNumbersOneToFourTwoTest()
+        public void PlayerSelectionSetTooHighSetFour()
         {
             var newValidation = new Validation();
 
-            var actual = newValidation.ValidateAmountOfPlayers(2);
-
-            Assert.AreEqual(actual, 2);
-        }
-
-        [TestMethod]
-        public void PlayerSelectionOnlyAcceptsNumbersOneToFourThreeTest()
-        {
-            var newValidation = new Validation();
-
-            var actual = newValidation.ValidateAmountOfPlayers(3);
-
-            Assert.AreEqual(actual, 3);
-        }
-
-        [TestMethod]
-        public void PlayerSelectionOnlyAcceptsNumbersOneToFourFourTest()
-        {
-            var newValidation = new Validation();
-
-            var actual = newValidation.ValidateAmountOfPlayers(4);
+            var actual = newValidation.ValidateAmountOfPlayers(5);
 
             Assert.AreEqual(actual, 4);
-        }
-
-        [TestMethod]
-        public void PlayerSelectionReturnsZeroIfUnderOne()
-        {
-            var newValidation = new Validation();
-
-            var actual = newValidation.ValidateAmountOfPlayers(-1);
-
-            Assert.AreEqual(actual, 0);
-        }
-
-        [TestMethod]
-        public void PlayerSelectionReturnsZeroIfOverFour()
-        {
-            var newValidation = new Validation();
-
-            var actual = newValidation.ValidateAmountOfPlayers(5);
-
-            Assert.AreEqual(actual, 0);
-        }
-
-        [TestMethod]
-        public void PlayerSelectionRejectsNumbersLessThen1()
-        {
-            var newValidation = new Validation();
-
-            var actual = newValidation.ValidateAmountOfPlayers(-1);
-
-            Assert.AreEqual(actual, 0);
-        }
-
-        [TestMethod]
-        public void PlayerSelectionRejectsNumbersMoreThen4()
-        {
-            var newValidation = new Validation();
-
-            var actual = newValidation.ValidateAmountOfPlayers(5);
-
-            Assert.AreEqual(actual, 0);
         }
     }
 }

@@ -4,13 +4,25 @@ namespace BowlingLibrary
 {
     public class Round
     {
-
+        private Guid _id;
         int[] pinFalls = new int[21];
         int rollCounter;
 
         public Round()
         {
+            _id = Id;
+        }
 
+        public Guid Id
+        {
+            get { return _id; }
+            private set
+            {
+                if (_id == (Guid.Empty))
+                    _id = Guid.NewGuid();
+                else
+                { Console.WriteLine("This round has an uID -- Unbable to reset."); }
+            }
         }
 
         public void Roll(int pins)
