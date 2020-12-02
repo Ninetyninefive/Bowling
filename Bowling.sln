@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling", "Bowling\Bowling.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling.UnitTest", "Bowling.UnitTest\Bowling.UnitTest.csproj", "{30A0172D-4958-4193-96E3-FC1E4165DD6B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowlingManager", "BowlingManager\BowlingManager.csproj", "{B92D01FF-778E-4803-8A6C-1D816FD19223}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -33,6 +35,10 @@ Global
 		{30A0172D-4958-4193-96E3-FC1E4165DD6B}.Debug|anycpu.Build.0 = Debug|Any CPU
 		{30A0172D-4958-4193-96E3-FC1E4165DD6B}.Release|anycpu.ActiveCfg = Release|Any CPU
 		{30A0172D-4958-4193-96E3-FC1E4165DD6B}.Release|anycpu.Build.0 = Release|Any CPU
+		{B92D01FF-778E-4803-8A6C-1D816FD19223}.Debug|anycpu.ActiveCfg = Debug|Any CPU
+		{B92D01FF-778E-4803-8A6C-1D816FD19223}.Debug|anycpu.Build.0 = Debug|Any CPU
+		{B92D01FF-778E-4803-8A6C-1D816FD19223}.Release|anycpu.ActiveCfg = Release|Any CPU
+		{B92D01FF-778E-4803-8A6C-1D816FD19223}.Release|anycpu.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
