@@ -126,6 +126,102 @@ namespace BowlingLibrary.UnitTest
         }
 
 
+        [TestMethod]
+        public void RollTooManyReturnsProperScore()
+        {
+            game.Roll(10);
+            game.Roll(9); game.Roll(1);
+            game.Roll(5); game.Roll(5);
+            game.Roll(7); game.Roll(2);
+            game.Roll(10);
+            game.Roll(10);
+            game.Roll(10);
+            game.Roll(9); game.Roll(0);
+            game.Roll(8); game.Roll(2);
+            game.Roll(9); game.Roll(1); game.Roll(10);
 
+            //RollTooMuch
+            game.Roll(10);
+            game.Roll(10);
+            game.Roll(10);
+            game.Roll(10);
+
+            Assert.AreEqual(game.Score(), 187);
+        }
+
+        [TestMethod]
+        public void Roll21Ones()
+        {
+            RollMany(21, 1);
+
+            Assert.AreEqual(game.Score(), 20);
+        }
+
+        [TestMethod]
+        public void Roll13Strikes()
+        {
+            RollMany(13, 10);
+
+            Assert.AreEqual(game.Score(), 300);
+        }
+
+        [TestMethod]
+        public void ReturnRoundCompleteIf13Strikes()
+        {
+            RollMany(13, 10);
+
+
+            Assert.AreEqual(game.Done(), true);
+        }
+        [TestMethod]
+        public void ReturnRoundCompleteIf12Strikes()
+        {
+            RollMany(12, 10);
+
+
+            Assert.AreEqual(game.Done(), true);
+        }
+
+        [TestMethod]
+        public void ReturnRoundNotCompleteIf11Strikes()
+        {
+            RollMany(11, 10);
+
+
+            Assert.AreEqual(game.Done(), false);
+        }
+        [TestMethod]
+        public void ReturnRoundNotCompleteIf10Strikes()
+        {
+            RollMany(10, 10);
+
+
+            Assert.AreEqual(game.Done(), false);
+        }
+
+        [TestMethod]
+        public void TypicalGameReturnsValidEndState()
+        {
+            game.Roll(10);
+            game.Roll(9); game.Roll(1);
+            game.Roll(5); game.Roll(5);
+            game.Roll(7); game.Roll(2);
+            game.Roll(10);
+            game.Roll(10);
+            game.Roll(10);
+            game.Roll(9); game.Roll(0);
+            game.Roll(8); game.Roll(2);
+            game.Roll(9); game.Roll(1); game.Roll(10);
+
+            Assert.AreEqual(game.Done(), true);
+        }
+
+        [TestMethod]
+        public void AllGutterBallsReturnsProperEndState()
+        {
+            RollMany(20, 0);
+
+            Assert.AreEqual(game.Done(), true);
+        }
     }
 }

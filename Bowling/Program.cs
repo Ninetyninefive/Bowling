@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using BowlingLibrary;
 
 namespace Bowling
 {
@@ -6,14 +8,7 @@ namespace Bowling
     {
         static void Main(string[] args)
         {
-
-            
-            BowlingGame game = new BowlingGame();
-            game.Run();
-
             Console.ReadKey();
-            
-
         }
     }
 }

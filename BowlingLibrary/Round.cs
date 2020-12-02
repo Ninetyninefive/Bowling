@@ -4,25 +4,27 @@ namespace BowlingLibrary
 {
     public class Round
     {
-        private Guid _id;
+        private int _id;
         int[] pinFalls = new int[21];
-        int rollCounter;
+        public int rollCounter;
+        bool _isComplete;
 
         public Round()
         {
             _id = Id;
+            _isComplete = IsComplete;
         }
 
-        public Guid Id
+        public int Id
         {
             get { return _id; }
-            private set
-            {
-                if (_id == (Guid.Empty))
-                    _id = Guid.NewGuid();
-                else
-                { Console.WriteLine("This round has an uID -- Unbable to reset."); }
-            }
+            private set { _id = value; }
+        }
+
+        public bool IsComplete
+        {
+            get { return _isComplete; }
+            private set { _isComplete = value; }
         }
 
         public void Roll(int pins)
@@ -57,13 +59,31 @@ namespace BowlingLibrary
             return pinFalls[frameIndex + 2];
         }
 
+        
+        public bool Done()
+        {
+            if((pinFalls[20] > -1) && rollCounter >= 12)
+            {
+                return _isComplete = true;
+            }
+            else if((pinFalls[20] > -1) && rollCounter > 20)
+            {
+                return _isComplete = true;
+            }
+            else
+            {
+                return _isComplete = false;
+            }
+        }
+        
+
         public int Score()
         {
             int score = 0;
             int frameIndex = 0;
-            for(int frame = 0; frame < 10; frame++)
+            for (int frame = 0; frame < 10; frame++)
             {
-                if(IsStrike(frameIndex))
+                if (IsStrike(frameIndex))
                 {
                     score += 10 + StrikeBonus(frameIndex);
                     frameIndex += 1;
@@ -78,7 +98,6 @@ namespace BowlingLibrary
                     score += pinFalls[frameIndex] + pinFalls[frameIndex + 1];
                     frameIndex += 2;
                 }
-                
             }
             return score;
         }
