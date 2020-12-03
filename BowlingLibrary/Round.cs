@@ -94,7 +94,7 @@ namespace BowlingLibrary
             {
                 return _isComplete = true;
             }
-            if((_strikeCounter > 10) && (_spareCounter > 10))
+            if((_strikeCounter > 10) || (_spareCounter > 10))
             {
                 return _isComplete = true;
             }
