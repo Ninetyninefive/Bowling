@@ -16,26 +16,42 @@ namespace BowlingManager
 
         }
 
-        public void NewGame()
+        public List<Player> NewGame(int playerCountWish)
         {
             var newValidation = new Validation();
 
-            var playerCount = newValidation.ValidateAmountOfPlayers(Convert.ToInt32(Console.ReadLine()));
+            var playerCount = newValidation.ValidateAmountOfPlayers(playerCountWish);
 
-            Player[] player = new Player[playerCount];
-            Round[] round = new Round[playerCount];
+            Player newPlayer = new Player();
+            List<Player> playerList = new List<Player>();
+            
+            for (int i = 0; i < playerCount; i++)
+            {
+                newPlayer = new Player();
+                newPlayer.Id = i;
+                newPlayer.Name = $"Player {i}";
+                playerList.Add(newPlayer);
+            }
+            return playerList;
+        }
+
+        public List<Round> StartRounds(int playerCountWish)
+        {
+            var newValidation = new Validation();
+
+            var playerCount = newValidation.ValidateAmountOfPlayers(playerCountWish);
+
+            Round newRound = new Round();
+            List<Round> roundList = new List<Round>();
 
             for (int i = 0; i < playerCount; i++)
             {
-                foreach (var item in player)
-                {
-                    item.Id = i;
-                    item.Name = $"Player {i}";
-                }
+                newRound = new Round();
+                newRound.Id = i;
+                roundList.Add(newRound);
             }
-
+            return roundList;
         }
-
 
     }
 

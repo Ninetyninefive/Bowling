@@ -21,7 +21,7 @@ namespace BowlingLibrary
         public int Id
         {
             get { return _id; }
-            private set { _id = value; }
+            set { _id = value; }
         }
         public int SpareCounter
         {
@@ -43,6 +43,7 @@ namespace BowlingLibrary
             get { return _isComplete; }
             private set { _isComplete = value; }
         }
+
 
         public void Roll(int pins)
         {
@@ -98,7 +99,7 @@ namespace BowlingLibrary
             {
                 return _isComplete = true;
             }
-            else if (CurrentFrame == 21)
+            if (CurrentFrame == 21)
             {
                 return _isComplete = true;
             }

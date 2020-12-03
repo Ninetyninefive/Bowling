@@ -22,6 +22,29 @@ namespace Bowling.UnitTest
             Assert.AreNotEqual(player1.Name, player2.Name);
         }
 
+        [TestMethod]
+        public void SaveShowHistory()
+        {
+            var game1 = new Round();
+            var player1 = new Player();
+            player1.Name = "Dansken som skrev C++";
+            game1.Roll(10);
+            game1.Roll(10);
+            game1.Roll(10);
+            game1.Roll(10);
+            game1.Roll(10);
+            game1.Roll(10);
+            game1.Roll(10);
+            game1.Roll(10);
+            game1.Roll(10);
+            game1.Roll(10);
+            game1.Roll(10);
+            game1.Roll(10);
+            var score1 = game1.Score();
+            player1.SaveGame(score1);
+            var scoreSaved = player1.ShowHistory();
+            Assert.AreEqual(scoreSaved, "300");
+        }
     }
 
 

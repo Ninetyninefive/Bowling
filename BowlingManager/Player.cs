@@ -13,7 +13,8 @@ namespace BowlingManager
         // Identifiers
         private string _name;
         private int _id;
-
+        private List<int> _history = new List<int>();
+        public int _incoming;
         // Stats
 
         public Player()
@@ -34,6 +35,19 @@ namespace BowlingManager
             set { _id = value; }
         }
 
+
+        public void SaveGame(int GameScore)
+        {
+            _history.Add(GameScore);
+        }
+
+        public string ShowHistory()
+        { var message = "";
+            message = string.Join(',', _history);
+            return message;
+        }
+
     }
+
 }
 

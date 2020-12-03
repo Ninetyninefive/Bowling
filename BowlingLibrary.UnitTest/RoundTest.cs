@@ -216,7 +216,7 @@ namespace BowlingLibrary.UnitTest
             game.Roll(9); game.Roll(0);
             game.Roll(8); game.Roll(2);
             game.Roll(9); game.Roll(1); game.Roll(10);
-
+            game.Score();
             Assert.AreEqual(game.Done(), true);
         }
 
@@ -236,5 +236,15 @@ namespace BowlingLibrary.UnitTest
 
             Assert.AreEqual(game.Index(), 1);
         }
+
+        [TestMethod]
+        public void FullTestGame()
+        {
+            game.Roll(1);
+            game.Score();
+
+            Assert.AreEqual(game.Index(), 1);
+        }
+
     }
 }

@@ -1,8 +1,10 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BowlingManager;
-using BowlingLibrary;
 using System.Collections.Generic;
+using System;
 using System.Linq;
+using BowlingLibrary;
+using System.IO;
 
 namespace BowlingManager.UnitTest
 {
@@ -32,30 +34,59 @@ namespace BowlingManager.UnitTest
         }
 
         [TestMethod]
-        public void Nothing()
+        public void PlayerCreation()
         {
-            var newValidation = new Validation();
+            List<Player> empty = new List<Player>();
+            var manager = new Manager();
 
-            var playerCount = newValidation.ValidateAmountOfPlayers(4);
+            var playerList = manager.NewGame(4);
 
-            Player[] player = new Player[playerCount];
-            Round[] round = new Round[playerCount];
+            int[] idcheck = new int[4];
 
-            for (int i = 0; i < playerCount; i++)
+            for (int i = 0; i < playerList.Count; i++)
             {
-                foreach (var item in player)
+                foreach (var item in playerList)
                 {
-                    item.Id = i;
-                    item.Name = $"Player {i}";
+                    if (item.Id == i)
+                    {
+                        idcheck[i] = item.Id;
+                    }
+                }
+            }
+            Assert.AreEqual(idcheck[3], 3);
+        }
+
+        [TestMethod]
+        public void PlayersRollGameAllStrike()
+        {
+            var actual = 0;
+            var manager = new Manager();
+            
+            var playerList = manager.NewGame(4);
+            var roundList = manager.StartRounds(4);
+
+            for (int i = 0; i < playerList.Count; i++)
+            {
+                foreach (var player in playerList)
+                {
+                    foreach (var gamee in roundList)
+                    {
+                        if(gamee.Id == player.Id)
+                        {
+                            gamee.Roll(10);
+                            gamee.Score();
+                            player.SaveGame(gamee.Score());
+                            actual = Convert.ToInt32(player.ShowHistory());
+                        }
+                    }
                 }
             }
 
-            Assert.AreEqual(player[1], "Player 1");
-            Assert.AreEqual(player[2], "Player 2");
-            Assert.AreEqual(player[3], "Player 3");
-            Assert.AreEqual(player[4], "Player 4");
-        }
+            
 
+            Assert.AreEqual(actual, 10);
+        }
 
     }
 }
+
