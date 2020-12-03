@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Bowling;
+using BowlingManager;
 using BowlingLibrary;
 using System.Collections.Generic;
 using System.Linq;

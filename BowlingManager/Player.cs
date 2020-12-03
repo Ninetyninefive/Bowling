@@ -1,31 +1,25 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
-using Bowling;
 using BowlingLibrary;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 
-namespace Bowling
+
+namespace BowlingManager
 {
     public class Player
     {
 
         // Identifiers
-        private int _id;
         private string _name;
+        private int _id;
 
         // Stats
 
         public Player()
         {
-            _id = Id;
             _name = Name;
-        }
-
-        public int Id
-        {
-            get { return _id; }
-            set {_id = value;}
+            _id = Id;
         }
 
         public string Name
@@ -34,7 +28,12 @@ namespace Bowling
             set { _name = value;}
         }
 
-                
+        public int Id
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
+
     }
 }
 

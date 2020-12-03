@@ -1,8 +1,11 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 using BowlingLibrary;
+using System.IO;
+using System.Linq;
 
-namespace Bowling
+
+namespace BowlingManager
 {
     public class Validation
     {

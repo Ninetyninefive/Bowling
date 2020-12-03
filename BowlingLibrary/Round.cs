@@ -5,9 +5,12 @@ namespace BowlingLibrary
     public class Round
     {
         private int _id;
-        int[] pinFalls = new int[21];
-        public int rollCounter;
-        bool _isComplete;
+        private int[] pinFalls = new int[21];
+        private int rollCounter;
+        private int _spareCounter;
+        private int _strikeCounter;
+        private int _currentFrame;
+        private bool _isComplete;
 
         public Round()
         {
@@ -20,7 +23,21 @@ namespace BowlingLibrary
             get { return _id; }
             private set { _id = value; }
         }
-
+        public int SpareCounter
+        {
+            get { return _spareCounter; }
+            private set { _spareCounter = value; }
+        }
+        public int StrikeCounter
+        {
+            get { return _strikeCounter; }
+            private set { _strikeCounter = value; }
+        }
+        public int CurrentFrame
+        {
+            get { return _currentFrame; }
+            private set { _currentFrame = value; }
+        }
         public bool IsComplete
         {
             get { return _isComplete; }
@@ -29,18 +46,25 @@ namespace BowlingLibrary
 
         public void Roll(int pins)
         {
-            if (pins > 10) { pins = 10; }
-                
-            if (pins < 0) { pins = 0; }
+        
+            if (pins > 10)
+            {
+                pins = 10;
+            }
+
+            if (pins < 0)
+            {
+                pins = 0;
+            }
+
 
             pinFalls[rollCounter] = pins;
             rollCounter++;
-        }
+            }
 
         bool IsStrike(int frameIndex)
         {
             return pinFalls[frameIndex] == 10;
-
         }
 
         bool IsSpare(int frameIndex)
@@ -59,14 +83,22 @@ namespace BowlingLibrary
             return pinFalls[frameIndex + 2];
         }
 
-        
+        public int Index()
+        {
+            return 0;
+        }
         public bool Done()
         {
-            if((pinFalls[20] > -1) && rollCounter >= 12)
+            
+            if((rollCounter > 20) || (Score() == 300))
             {
                 return _isComplete = true;
             }
-            else if((pinFalls[20] > -1) && rollCounter > 20)
+            if((_strikeCounter > 10) && (_spareCounter > 10))
+            {
+                return _isComplete = true;
+            }
+            else if (CurrentFrame == 21)
             {
                 return _isComplete = true;
             }
@@ -75,7 +107,6 @@ namespace BowlingLibrary
                 return _isComplete = false;
             }
         }
-        
 
         public int Score()
         {
@@ -87,19 +118,24 @@ namespace BowlingLibrary
                 {
                     score += 10 + StrikeBonus(frameIndex);
                     frameIndex += 1;
+                    _strikeCounter++;
                 }
                 else if (IsSpare(frameIndex))
                 {
                     score += 10 + SpareBonus(frameIndex);
                     frameIndex += 2;
+                    _spareCounter++;
                 }
                 else
                 {
                     score += pinFalls[frameIndex] + pinFalls[frameIndex + 1];
                     frameIndex += 2;
+
                 }
             }
             return score;
         }
+
+        
     }
 }

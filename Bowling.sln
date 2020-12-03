@@ -7,11 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowlingLibrary", "BowlingLi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowlingLibrary.UnitTest", "BowlingLibrary.UnitTest\BowlingLibrary.UnitTest.csproj", "{85D99658-97DF-4A34-A7BE-69C038B34370}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling", "Bowling\Bowling.csproj", "{27FBA7BB-9A0D-4431-936E-FA356EE1365D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling.UnitTest", "Bowling.UnitTest\Bowling.UnitTest.csproj", "{30A0172D-4958-4193-96E3-FC1E4165DD6B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowlingManager", "BowlingManager\BowlingManager.csproj", "{B92D01FF-778E-4803-8A6C-1D816FD19223}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowlingManager.UnitTest", "BowlingManager.UnitTest\BowlingManager.UnitTest.csproj", "{99985BC6-8B04-47BB-8310-FFA4A3B700B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,18 +25,14 @@ Global
 		{85D99658-97DF-4A34-A7BE-69C038B34370}.Debug|anycpu.Build.0 = Debug|Any CPU
 		{85D99658-97DF-4A34-A7BE-69C038B34370}.Release|anycpu.ActiveCfg = Release|Any CPU
 		{85D99658-97DF-4A34-A7BE-69C038B34370}.Release|anycpu.Build.0 = Release|Any CPU
-		{27FBA7BB-9A0D-4431-936E-FA356EE1365D}.Debug|anycpu.ActiveCfg = Debug|Any CPU
-		{27FBA7BB-9A0D-4431-936E-FA356EE1365D}.Debug|anycpu.Build.0 = Debug|Any CPU
-		{27FBA7BB-9A0D-4431-936E-FA356EE1365D}.Release|anycpu.ActiveCfg = Release|Any CPU
-		{27FBA7BB-9A0D-4431-936E-FA356EE1365D}.Release|anycpu.Build.0 = Release|Any CPU
-		{30A0172D-4958-4193-96E3-FC1E4165DD6B}.Debug|anycpu.ActiveCfg = Debug|Any CPU
-		{30A0172D-4958-4193-96E3-FC1E4165DD6B}.Debug|anycpu.Build.0 = Debug|Any CPU
-		{30A0172D-4958-4193-96E3-FC1E4165DD6B}.Release|anycpu.ActiveCfg = Release|Any CPU
-		{30A0172D-4958-4193-96E3-FC1E4165DD6B}.Release|anycpu.Build.0 = Release|Any CPU
 		{B92D01FF-778E-4803-8A6C-1D816FD19223}.Debug|anycpu.ActiveCfg = Debug|Any CPU
 		{B92D01FF-778E-4803-8A6C-1D816FD19223}.Debug|anycpu.Build.0 = Debug|Any CPU
 		{B92D01FF-778E-4803-8A6C-1D816FD19223}.Release|anycpu.ActiveCfg = Release|Any CPU
 		{B92D01FF-778E-4803-8A6C-1D816FD19223}.Release|anycpu.Build.0 = Release|Any CPU
+		{99985BC6-8B04-47BB-8310-FFA4A3B700B1}.Debug|anycpu.ActiveCfg = Debug|Any CPU
+		{99985BC6-8B04-47BB-8310-FFA4A3B700B1}.Debug|anycpu.Build.0 = Debug|Any CPU
+		{99985BC6-8B04-47BB-8310-FFA4A3B700B1}.Release|anycpu.ActiveCfg = Release|Any CPU
+		{99985BC6-8B04-47BB-8310-FFA4A3B700B1}.Release|anycpu.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

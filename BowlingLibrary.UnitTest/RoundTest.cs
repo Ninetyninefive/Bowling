@@ -14,6 +14,10 @@ namespace BowlingLibrary.UnitTest
         {
             for (int i = 0; i < rolls; i++)
             {
+                if(rolls > 20)
+                {
+                    rolls = 20;
+                }
                 game.Roll(pins);
             }
         }
@@ -81,7 +85,7 @@ namespace BowlingLibrary.UnitTest
         public void RollSpareEveryFrame()
         {
             
-            RollMany(21, 5);
+            RollMany(20, 5);
             Assert.AreEqual(game.Score(), 150);
         }
 
@@ -219,9 +223,18 @@ namespace BowlingLibrary.UnitTest
         [TestMethod]
         public void AllGutterBallsReturnsProperEndState()
         {
-            RollMany(20, 0);
+            RollMany(21, 0);
 
             Assert.AreEqual(game.Done(), true);
+        }
+
+        [TestMethod]
+        public void IndexBehaves()
+        {
+            game.Roll(1);
+            game.Score();
+
+            Assert.AreEqual(game.Index(), 1);
         }
     }
 }
