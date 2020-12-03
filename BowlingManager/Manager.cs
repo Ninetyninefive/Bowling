@@ -12,7 +12,7 @@ namespace BowlingManager
 
         public Manager()
         {
-            
+
 
         }
 
@@ -24,7 +24,7 @@ namespace BowlingManager
 
             Player newPlayer = new Player();
             List<Player> playerList = new List<Player>();
-            
+
             for (int i = 0; i < playerCount; i++)
             {
                 newPlayer = new Player();
@@ -53,7 +53,18 @@ namespace BowlingManager
             return roundList;
         }
 
-    }
+        public Player GetPlayer(List<Player> playerList, int id)
+        {
+            foreach (var item in playerList)
+            {
+                if(item.Id == id)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
 
+    }
     
 }
