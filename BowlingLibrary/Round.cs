@@ -63,31 +63,27 @@ namespace BowlingLibrary
             rollCounter++;
             }
 
-        bool IsStrike(int frameIndex)
+        private bool IsStrike(int frameIndex)
         {
             return pinFalls[frameIndex] == 10;
         }
 
-        bool IsSpare(int frameIndex)
+        private bool IsSpare(int frameIndex)
         {
             return pinFalls[frameIndex] + pinFalls[frameIndex + 1] == 10;
         }
 
-        int StrikeBonus(int frameIndex)
+        private int StrikeBonus(int frameIndex)
         {
             return pinFalls[frameIndex + 1] + pinFalls[frameIndex + 2];
 
         }
 
-        int SpareBonus(int frameIndex)
+        private int SpareBonus(int frameIndex)
         {
             return pinFalls[frameIndex + 2];
         }
 
-        public int Index()
-        {
-            return 0;
-        }
         public bool Done()
         {
             

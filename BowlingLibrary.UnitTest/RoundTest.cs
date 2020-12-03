@@ -228,23 +228,5 @@ namespace BowlingLibrary.UnitTest
             Assert.AreEqual(game.Done(), true);
         }
 
-        [TestMethod]
-        public void IndexBehaves()
-        {
-            game.Roll(1);
-            game.Score();
-
-            Assert.AreEqual(game.Index(), 1);
-        }
-
-        [TestMethod]
-        public void FullTestGame()
-        {
-            game.Roll(1);
-            game.Score();
-
-            Assert.AreEqual(game.Index(), 1);
-        }
-
     }
 }
