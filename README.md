@@ -1,6 +1,4 @@
 # Bowling
 
 
-- new features:
-Roll() -- All tests OK.
-Score() -- All tests OK.
+- WIP; trying to get frametracking to work.
