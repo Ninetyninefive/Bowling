@@ -10,12 +10,12 @@ namespace BowlingManager
     public class Player
     {
 
-        // Identifiers
+        
         private string _name;
         private int _id;
         private List<int> _history = new List<int>();
         public int _incoming;
-        // Stats
+        
 
         public Player()
         {
