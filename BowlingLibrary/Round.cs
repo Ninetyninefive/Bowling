@@ -11,6 +11,7 @@ namespace BowlingLibrary
         private int _strikeCounter;
         private int _currentFrame;
         private bool _isComplete;
+        private bool _isBonus;
 
         public Round()
         {
@@ -44,6 +45,11 @@ namespace BowlingLibrary
             private set { _isComplete = value; }
         }
 
+        public bool IsBonus
+        {
+            get { return _isBonus; }
+            private set { _isBonus = value; }
+        }
 
         public void Roll(int pins)
         {
@@ -51,18 +57,27 @@ namespace BowlingLibrary
             if (pins > 10)
             {
                 pins = 10;
+                
             }
-
             if (pins < 0)
             {
                 pins = 0;
             }
-
-
+            if (pins >= 10)
+            {
+                _currentFrame += 2;
+            }
+            else
+            {
+                _currentFrame += 1;
+            }
             pinFalls[rollCounter] = pins;
             rollCounter++;
             }
-
+        private bool BonusRound()
+        {
+            return (pinFalls[18] + pinFalls[19] == 10);
+        }
         private bool IsStrike(int frameIndex)
         {
             return pinFalls[frameIndex] == 10;
@@ -91,11 +106,7 @@ namespace BowlingLibrary
             {
                 return _isComplete = true;
             }
-            if((_strikeCounter > 10) || (_spareCounter > 10))
-            {
-                return _isComplete = true;
-            }
-            if (CurrentFrame == 21)
+            if (CurrentFrame > 18 && (!BonusRound()))
             {
                 return _isComplete = true;
             }

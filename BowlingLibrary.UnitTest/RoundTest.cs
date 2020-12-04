@@ -22,6 +22,25 @@ namespace BowlingLibrary.UnitTest
             }
         }
 
+
+
+        [TestMethod]
+        public void ReturnsCorrectGameFrameNormal()
+        {
+            game.Roll(5);
+
+            Assert.AreEqual(game.CurrentFrame, 1);
+        }
+
+        [TestMethod]
+        public void ReturnsCorrectGameFrameStrike()
+        {
+            game.Roll(10);
+
+            Assert.AreEqual(game.CurrentFrame, 2);
+        }
+
+
         [TestMethod]
         public void ReturnsCorrectAmmount()
         {
