@@ -16,7 +16,7 @@ namespace BowlingManager
 
         }
 
-        public List<Player> NewGame(int playerCountWish)
+        public List<Player> StartPlayers(int playerCountWish)
         {
             var newValidation = new Validation();
 
@@ -53,6 +53,25 @@ namespace BowlingManager
             return roundList;
         }
 
+        public List<string> RunGame(List<Round> activerounds, List<Player> activeplayers)
+        {
+            var message = new List<string>();
+            var playercount = activeplayers.Count;
+
+            for (int i = 0; i < playercount; i++)
+            {
+                while (activerounds[i].Done() == false)
+                {
+                    activerounds[i].Roll(10);
+                }
+                if (activerounds[i].Done())
+                {
+                    activeplayers[i].SaveGame(activerounds[i].Score());
+                }
+                message.Add(activeplayers[i].Name + activeplayers[i].ShowHistory().ToString());
+            }
+            return message;
+        }
     }
 
     

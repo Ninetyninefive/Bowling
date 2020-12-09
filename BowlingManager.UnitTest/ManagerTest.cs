@@ -40,7 +40,7 @@ namespace BowlingManager.UnitTest
             List<Player> empty = new List<Player>();
             var manager = new Manager();
 
-            var playerList = manager.NewGame(4);
+            var playerList = manager.StartPlayers(4);
 
             int[] idcheck = new int[4];
 
@@ -57,35 +57,24 @@ namespace BowlingManager.UnitTest
             Assert.AreEqual(idcheck[3], 3);
         }
 
+        
         [TestMethod]
         public void PlayersRollGameAllStrike()
         {
             
             var manager = new Manager();
-            
-            var playerList = manager.NewGame(4);
+            var playerList = manager.StartPlayers(4);
             var roundList = manager.StartRounds(4);
-            var actual = new int[playerList.Count];
-            for (int i = 0; i < playerList.Count; i++)
+            var result = manager.RunGame(roundList, playerList);
+            
+            foreach (var item in result)
             {
-                foreach (var player in playerList)
-                {
-                    foreach (var game in roundList)
-                    {
-                        while(!game.Done())
-                        if(game.Id == player.Id)
-                        {
-                            game.Roll(10);
-                            
-                            player.SaveGame(game.Score());
-                                actual[i] = game.Score();
-                        }
-                    }
-                }
+                Console.WriteLine(item);
             }
 
-            Assert.AreEqual(actual[0], 300);
+            Assert.IsNotNull(result);
         }
+        
 
     }
 }

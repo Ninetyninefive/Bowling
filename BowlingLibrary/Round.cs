@@ -10,6 +10,7 @@ namespace BowlingLibrary
         private bool _isBonus;
         private int _currentFrame;
         private bool _isComplete;
+        private string _message = "";
 
         public Round()
         {
@@ -41,25 +42,23 @@ namespace BowlingLibrary
             private set { _isBonus = value; }
         }
 
-
         public void Roll(int pins)
         {
-        
-            if (pins > 10)
-            {
-                pins = 10;
-                CurrentFrame += 2;
-            }
+                if (pins > 10)
+                {
+                    pins = 10;
+                    CurrentFrame += 2;
+                }
 
-            if (pins < 0)
-            {
-                pins = 0;
-            }
+                if (pins < 0)
+                {
+                    pins = 0;
+                }
 
-            _pinFalls[_rollCounter] = pins;
-            _rollCounter++;
-            CurrentFrame++;
-            }
+                _pinFalls[_rollCounter] = pins;
+                _rollCounter++;
+                CurrentFrame++;
+        }
 
         private bool IsStrike(int frameIndex)
         {
@@ -89,22 +88,18 @@ namespace BowlingLibrary
 
         public bool Done()
         {
-            
-            if(_rollCounter > 19 || CurrentFrame > 19)
+            if(_rollCounter < 18 &&  CurrentFrame > 18 && !TenthFrameBonus())
             {
                 return _isComplete = true;
             }
-            if (CurrentFrame < 19 && TenthFrameBonus())
+            if (CurrentFrame > 18 && !TenthFrameBonus())
+            {
+                if(!TenthFrameBonus())
+                return _isComplete = true;
+            }
+            if (CurrentFrame > 18 && TenthFrameBonus())
             {
                 return _isComplete = false;
-            }
-            if (CurrentFrame > 19 && !TenthFrameBonus())
-            {
-                return _isComplete = true;
-            }
-            if (Score() == 300)
-            {
-                return _isComplete = true;
             }
             else
             {
@@ -132,7 +127,6 @@ namespace BowlingLibrary
                 {
                     score += _pinFalls[frameIndex] + _pinFalls[frameIndex + 1];
                     frameIndex += 2;
-
                 }
             }
             return score;
