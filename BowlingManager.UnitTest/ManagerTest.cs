@@ -65,7 +65,7 @@ namespace BowlingManager.UnitTest
             var manager = new Manager();
             var playerList = manager.StartPlayers(4);
             var roundList = manager.StartRounds(4);
-            var result = manager.RunGame(roundList, playerList);
+            var result = manager.RunGame(roundList, playerList, 10);
             
             foreach (var item in result)
             {
@@ -74,7 +74,49 @@ namespace BowlingManager.UnitTest
 
             Assert.IsNotNull(result);
         }
-        
+
+        [TestMethod]
+        public void FullStrikeGameFourPlayersThenNewGame()
+        {
+
+            var manager = new Manager();
+            var playerList = manager.StartPlayers(4);
+            var roundList = manager.StartRounds(4);
+            var currentGame = manager.RunGame(roundList, playerList, 10);
+
+            foreach (var item in currentGame)
+            {
+                Console.WriteLine(item);
+            }
+
+            var manager2 = new Manager();
+            var playerList2 = manager.StartPlayers(4);
+            var roundList2 = manager.StartRounds(4);
+            var currentGame2 = manager.RunGame(roundList2, playerList2, 8);
+
+            foreach (var item in currentGame2)
+            {
+                Console.WriteLine(item);
+            }
+            Assert.AreNotEqual(currentGame, currentGame2);
+        }
+
+        [TestMethod]
+        public void PlayersRollGameAllStrikeReturnsCorrectScoreCard()
+        {
+
+            var manager = new Manager();
+            var playerList = manager.StartPlayers(4);
+            var roundList = manager.StartRounds(4);
+            var currentGame = manager.RunGame(roundList, playerList, 10);
+
+            foreach (var item in currentGame)
+            {
+                Console.WriteLine(item);
+            }
+
+            Assert.IsNotNull(currentGame);
+        }
 
     }
 }

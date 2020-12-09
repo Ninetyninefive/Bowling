@@ -166,16 +166,12 @@ namespace BowlingLibrary.UnitTest
         public void ReturnRoundCompleteIf13Strikes()
         {
             RollMany(13, 10);
-
-
             Assert.AreEqual(game.Done(), true);
         }
         [TestMethod]
         public void ReturnRoundCompleteIf12Strikes()
         {
             RollMany(12, 10);
-
-
             Assert.AreEqual(game.Done(), true);
         }
 
@@ -197,7 +193,7 @@ namespace BowlingLibrary.UnitTest
         }
 
         [TestMethod]
-        public void RollTwentyOnesRetursProperEndState()
+        public void RollTwentyOnesReturnsProperEndState()
         {
             RollMany(20, 1);
             Assert.AreEqual(game.Done(), true);
@@ -212,12 +208,30 @@ namespace BowlingLibrary.UnitTest
         }
 
         [TestMethod]
-        public void IndexBehaves()
+        public void IndexBehavesOneThrow()
         {
             game.Roll(1);
             game.Score();
 
             Assert.AreEqual(game.CurrentFrame, 1);
+        }
+
+        [TestMethod]
+        public void IndexBehavesTenThrows()
+        {
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Score();
+
+            Assert.AreEqual(game.CurrentFrame, 10);
         }
 
         [TestMethod]

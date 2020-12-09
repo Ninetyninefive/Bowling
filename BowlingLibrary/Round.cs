@@ -11,6 +11,7 @@ namespace BowlingLibrary
         private int _currentFrame;
         private bool _isComplete;
 
+
         public Round()
         {
             _id = Id;
@@ -87,7 +88,7 @@ namespace BowlingLibrary
 
         public bool Done()
         {
-            if(_rollCounter > 12)
+            if(_rollCounter >= 12)
             {
                 if (CurrentFrame > 19 && !TenthFrameBonus())
                 {
@@ -101,7 +102,7 @@ namespace BowlingLibrary
                 {
                     return _isComplete = false;
                 }
-                if (_rollCounter > 19 || TenthFrameBonus() && _currentFrame > 19)
+                if (_rollCounter > 19 || TenthFrameBonus() && _currentFrame > 19 || Score() == 300)
                 {
                     return _isComplete = true;
                 }

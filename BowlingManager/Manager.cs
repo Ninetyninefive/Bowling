@@ -53,7 +53,9 @@ namespace BowlingManager
             return roundList;
         }
 
-        public List<string> RunGame(List<Round> activerounds, List<Player> activeplayers)
+
+        //game -- number given in pins is the pins struck down each roll
+        public List<string> RunGame(List<Round> activerounds, List<Player> activeplayers, int pins)
         {
             var message = new List<string>();
             var playercount = activeplayers.Count;
@@ -62,7 +64,7 @@ namespace BowlingManager
             {
                 while (activerounds[i].Done() == false)
                 {
-                    activerounds[i].Roll(10);
+                    activerounds[i].Roll(pins);
                 }
                 if (activerounds[i].Done())
                 {
