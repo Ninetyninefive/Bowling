@@ -10,7 +10,6 @@ namespace BowlingLibrary
         private bool _isBonus;
         private int _currentFrame;
         private bool _isComplete;
-        private string _message = "";
 
         public Round()
         {
@@ -88,22 +87,21 @@ namespace BowlingLibrary
 
         public bool Done()
         {
-            if(_rollCounter < 18 &&  CurrentFrame > 18 && !TenthFrameBonus())
+            if(_rollCounter > 10 &&  CurrentFrame > 17 && !TenthFrameBonus())
             {
                 return _isComplete = true;
             }
-            if (CurrentFrame > 18 && !TenthFrameBonus())
+            if (_rollCounter > 10 && CurrentFrame > 19 && TenthFrameBonus())
             {
-                if(!TenthFrameBonus())
                 return _isComplete = true;
             }
-            if (CurrentFrame > 18 && TenthFrameBonus())
+            if (_rollCounter > 10 && CurrentFrame > 18 && TenthFrameBonus())
             {
                 return _isComplete = false;
             }
             else
             {
-                return _isComplete = false;
+                return _isComplete;
             }
         }
 
