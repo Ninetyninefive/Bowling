@@ -81,13 +81,6 @@ namespace BowlingLibrary.UnitTest
             Assert.AreEqual(game.Score(), 29);
         }
 
-        [TestMethod]
-        public void RollSpareEveryFrame()
-        {
-            
-            RollMany(20, 5);
-            Assert.AreEqual(game.Score(), 150);
-        }
 
         [TestMethod]
         public void RollPerfectGame()
@@ -204,19 +197,9 @@ namespace BowlingLibrary.UnitTest
         }
 
         [TestMethod]
-        public void TypicalGameReturnsValidEndState()
+        public void RollTwentyOnesRetursProperEndState()
         {
-            game.Roll(10);
-            game.Roll(9); game.Roll(1);
-            game.Roll(5); game.Roll(5);
-            game.Roll(7); game.Roll(2);
-            game.Roll(10);
-            game.Roll(10);
-            game.Roll(10);
-            game.Roll(9); game.Roll(0);
-            game.Roll(8); game.Roll(2);
-            game.Roll(9); game.Roll(1); game.Roll(10);
-            game.Score();
+            RollMany(20, 1);
             Assert.AreEqual(game.Done(), true);
         }
 
@@ -234,16 +217,35 @@ namespace BowlingLibrary.UnitTest
             game.Roll(1);
             game.Score();
 
-            Assert.AreEqual(game.Index(), 1);
+            Assert.AreEqual(game.CurrentFrame, 1);
         }
 
         [TestMethod]
         public void FullTestGame()
         {
             game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
             game.Score();
 
-            Assert.AreEqual(game.Index(), 1);
+            Assert.AreEqual(game.Done(), true);
         }
 
     }

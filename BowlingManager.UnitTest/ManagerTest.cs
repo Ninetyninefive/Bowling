@@ -1,9 +1,10 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BowlingManager;
+using BowlingLibrary;
 using System.Collections.Generic;
 using System;
 using System.Linq;
-using BowlingLibrary;
+
 using System.IO;
 
 namespace BowlingManager.UnitTest
@@ -59,32 +60,31 @@ namespace BowlingManager.UnitTest
         [TestMethod]
         public void PlayersRollGameAllStrike()
         {
-            var actual = 0;
+            
             var manager = new Manager();
             
             var playerList = manager.NewGame(4);
             var roundList = manager.StartRounds(4);
-
+            var actual = new int[playerList.Count];
             for (int i = 0; i < playerList.Count; i++)
             {
                 foreach (var player in playerList)
                 {
-                    foreach (var gamee in roundList)
+                    foreach (var game in roundList)
                     {
-                        if(gamee.Id == player.Id)
+                        while(!game.Done())
+                        if(game.Id == player.Id)
                         {
-                            gamee.Roll(10);
-                            gamee.Score();
-                            player.SaveGame(gamee.Score());
-                            actual = Convert.ToInt32(player.ShowHistory());
+                            game.Roll(10);
+                            
+                            player.SaveGame(game.Score());
+                                actual[i] = game.Score();
                         }
                     }
                 }
             }
 
-            
-
-            Assert.AreEqual(actual, 10);
+            Assert.AreEqual(actual[0], 300);
         }
 
     }
