@@ -99,6 +99,10 @@ namespace BowlingLibrary
             {
                 return _isComplete = false;
             }
+            if (_rollCounter > 19 || TenthFrameBonus() && _currentFrame > 19)
+            {
+                return _isComplete = true;
+            }
             else
             {
                 return _isComplete;
