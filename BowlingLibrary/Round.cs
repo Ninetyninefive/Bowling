@@ -5,13 +5,13 @@ namespace BowlingLibrary
     public class Round
     {
         private int _id;
-        private int[] pinFalls = new int[21];
-        private int rollCounter;
-        private int _spareCounter;
-        private int _strikeCounter;
+        private int[] _pinFalls = new int[21];
+        private int _rollCounter;
+        private bool _isBonus;
         private int _currentFrame;
         private bool _isComplete;
         private bool _isBonus;
+
 
         public Round()
         {
@@ -24,21 +24,13 @@ namespace BowlingLibrary
             get { return _id; }
             set { _id = value; }
         }
-        public int SpareCounter
-        {
-            get { return _spareCounter; }
-            private set { _spareCounter = value; }
-        }
-        public int StrikeCounter
-        {
-            get { return _strikeCounter; }
-            private set { _strikeCounter = value; }
-        }
+
         public int CurrentFrame
         {
             get { return _currentFrame; }
             private set { _currentFrame = value; }
         }
+
         public bool IsComplete
         {
             get { return _isComplete; }
@@ -51,69 +43,78 @@ namespace BowlingLibrary
             private set { _isBonus = value; }
         }
 
-        public void Roll(int pins)
-        {
-        
-            if (pins > 10)
-            {
-                pins = 10;
-                
-            }
-            if (pins < 0)
-            {
-                pins = 0;
-            }
-            if (pins >= 10)
-            {
-                _currentFrame += 2;
-            }
-            else
-            {
-                _currentFrame += 1;
-            }
-            pinFalls[rollCounter] = pins;
-            rollCounter++;
-            }
         private bool BonusRound()
         {
             return (pinFalls[18] + pinFalls[19] == 10);
         }
+
+        public void Roll(int pins) 
+        {
+
+                if (pins > 10)
+                {
+                    pins = 10;
+                    CurrentFrame += 2;
+                }
+
+                if (pins < 0)
+                {
+                    pins = 0;
+                }
+
+                _pinFalls[_rollCounter] = pins;
+                _rollCounter++;
+                _currentFrame++;
+        }
+
         private bool IsStrike(int frameIndex)
         {
-            return pinFalls[frameIndex] == 10;
+            return _pinFalls[frameIndex] == 10;
         }
 
         private bool IsSpare(int frameIndex)
         {
-            return pinFalls[frameIndex] + pinFalls[frameIndex + 1] == 10;
+            return _pinFalls[frameIndex] + _pinFalls[frameIndex + 1] == 10;
         }
 
         private int StrikeBonus(int frameIndex)
         {
-            return pinFalls[frameIndex + 1] + pinFalls[frameIndex + 2];
+            return _pinFalls[frameIndex + 1] + _pinFalls[frameIndex + 2];
 
         }
 
         private int SpareBonus(int frameIndex)
         {
-            return pinFalls[frameIndex + 2];
+            return _pinFalls[frameIndex + 2];
+        }
+
+        private bool TenthFrameBonus()
+        {
+            return _pinFalls[18] + _pinFalls[19] == 10;
         }
 
         public bool Done()
         {
-            
-            if((rollCounter > 20) || (Score() == 300))
+            if(_rollCounter >= 12)
             {
-                return _isComplete = true;
+                if (CurrentFrame > 19 && !TenthFrameBonus())
+                {
+                    return _isComplete = true;
+                }
+                if (CurrentFrame > 19 && TenthFrameBonus())
+                {
+                    return _isComplete = false;
+                }
+                if (CurrentFrame > 18 && TenthFrameBonus())
+                {
+                    return _isComplete = false;
+                }
+                if (_rollCounter > 19 || TenthFrameBonus() && _currentFrame > 19 || Score() == 300)
+                {
+                    return _isComplete = true;
+                }
             }
-            if (CurrentFrame > 18 && (!BonusRound()))
-            {
-                return _isComplete = true;
-            }
-            else
-            {
-                return _isComplete = false;
-            }
+            return _isComplete;
         }
 
         public int Score()
@@ -126,19 +127,16 @@ namespace BowlingLibrary
                 {
                     score += 10 + StrikeBonus(frameIndex);
                     frameIndex += 1;
-                    _strikeCounter++;
                 }
                 else if (IsSpare(frameIndex))
                 {
                     score += 10 + SpareBonus(frameIndex);
                     frameIndex += 2;
-                    _spareCounter++;
                 }
                 else
                 {
-                    score += pinFalls[frameIndex] + pinFalls[frameIndex + 1];
+                    score += _pinFalls[frameIndex] + _pinFalls[frameIndex + 1];
                     frameIndex += 2;
-
                 }
             }
             return score;

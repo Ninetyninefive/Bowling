@@ -1,9 +1,10 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BowlingManager;
+using BowlingLibrary;
 using System.Collections.Generic;
 using System;
 using System.Linq;
-using BowlingLibrary;
+
 using System.IO;
 
 namespace BowlingManager.UnitTest
@@ -39,7 +40,7 @@ namespace BowlingManager.UnitTest
             List<Player> empty = new List<Player>();
             var manager = new Manager();
 
-            var playerList = manager.NewGame(4);
+            var playerList = manager.StartPlayers(4);
 
             int[] idcheck = new int[4];
 
@@ -56,35 +57,65 @@ namespace BowlingManager.UnitTest
             Assert.AreEqual(idcheck[3], 3);
         }
 
+        
         [TestMethod]
         public void PlayersRollGameAllStrike()
         {
-            var actual = 0;
-            var manager = new Manager();
             
-            var playerList = manager.NewGame(4);
+            var manager = new Manager();
+            var playerList = manager.StartPlayers(4);
             var roundList = manager.StartRounds(4);
-
-            for (int i = 0; i < playerList.Count; i++)
+            var result = manager.RunGame(roundList, playerList, 10);
+            
+            foreach (var item in result)
             {
-                foreach (var player in playerList)
-                {
-                    foreach (var gamee in roundList)
-                    {
-                        if(gamee.Id == player.Id)
-                        {
-                            gamee.Roll(10);
-                            gamee.Score();
-                            player.SaveGame(gamee.Score());
-                            actual = Convert.ToInt32(player.ShowHistory());
-                        }
-                    }
-                }
+                Console.WriteLine(item);
             }
 
-            
+            Assert.IsNotNull(result);
+        }
 
-            Assert.AreEqual(actual, 10);
+        [TestMethod]
+        public void FullStrikeGameFourPlayersThenNewGame()
+        {
+
+            var manager = new Manager();
+            var playerList = manager.StartPlayers(4);
+            var roundList = manager.StartRounds(4);
+            var currentGame = manager.RunGame(roundList, playerList, 10);
+
+            foreach (var item in currentGame)
+            {
+                Console.WriteLine(item);
+            }
+
+            var manager2 = new Manager();
+            var playerList2 = manager.StartPlayers(4);
+            var roundList2 = manager.StartRounds(4);
+            var currentGame2 = manager.RunGame(roundList2, playerList2, 8);
+
+            foreach (var item in currentGame2)
+            {
+                Console.WriteLine(item);
+            }
+            Assert.AreNotEqual(currentGame, currentGame2);
+        }
+
+        [TestMethod]
+        public void PlayersRollGameAllStrikeReturnsCorrectScoreCard()
+        {
+
+            var manager = new Manager();
+            var playerList = manager.StartPlayers(4);
+            var roundList = manager.StartRounds(4);
+            var currentGame = manager.RunGame(roundList, playerList, 10);
+
+            foreach (var item in currentGame)
+            {
+                Console.WriteLine(item);
+            }
+
+            Assert.IsNotNull(currentGame);
         }
 
     }

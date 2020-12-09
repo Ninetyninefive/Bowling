@@ -16,7 +16,7 @@ namespace BowlingManager
 
         }
 
-        public List<Player> NewGame(int playerCountWish)
+        public List<Player> StartPlayers(int playerCountWish)
         {
             var newValidation = new Validation();
 
@@ -65,6 +65,26 @@ namespace BowlingManager
             return null;
         }
 
+        //game -- number given in pins is the pins struck down each roll
+        public List<string> RunGame(List<Round> activerounds, List<Player> activeplayers, int pins)
+        {
+            var message = new List<string>();
+            var playercount = activeplayers.Count;
+
+            for (int i = 0; i < playercount; i++)
+            {
+                while (activerounds[i].Done() == false)
+                {
+                    activerounds[i].Roll(pins);
+                }
+                if (activerounds[i].Done())
+                {
+                    activeplayers[i].SaveGame(activerounds[i].Score());
+                }
+                message.Add(activeplayers[i].Name + activeplayers[i].ShowHistory().ToString());
+            }
+            return message;
+        }
     }
     
 }

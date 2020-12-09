@@ -100,13 +100,6 @@ namespace BowlingLibrary.UnitTest
             Assert.AreEqual(game.Score(), 29);
         }
 
-        [TestMethod]
-        public void RollSpareEveryFrame()
-        {
-            
-            RollMany(20, 5);
-            Assert.AreEqual(game.Score(), 150);
-        }
 
         [TestMethod]
         public void RollPerfectGame()
@@ -192,16 +185,12 @@ namespace BowlingLibrary.UnitTest
         public void ReturnRoundCompleteIf13Strikes()
         {
             RollMany(13, 10);
-
-
             Assert.AreEqual(game.Done(), true);
         }
         [TestMethod]
         public void ReturnRoundCompleteIf12Strikes()
         {
             RollMany(12, 10);
-
-
             Assert.AreEqual(game.Done(), true);
         }
 
@@ -223,19 +212,9 @@ namespace BowlingLibrary.UnitTest
         }
 
         [TestMethod]
-        public void TypicalGameReturnsValidEndState()
+        public void RollTwentyOnesReturnsProperEndState()
         {
-            game.Roll(10);
-            game.Roll(9); game.Roll(1);
-            game.Roll(5); game.Roll(5);
-            game.Roll(7); game.Roll(2);
-            game.Roll(10);
-            game.Roll(10);
-            game.Roll(10);
-            game.Roll(9); game.Roll(0);
-            game.Roll(8); game.Roll(2);
-            game.Roll(9); game.Roll(1); game.Roll(10);
-            game.Score();
+            RollMany(20, 1);
             Assert.AreEqual(game.Done(), true);
         }
 
@@ -247,5 +226,59 @@ namespace BowlingLibrary.UnitTest
             Assert.AreEqual(game.Done(), true);
         }
 
+        [TestMethod]
+        public void IndexBehavesOneThrow()
+        {
+            game.Roll(1);
+            game.Score();
+
+            Assert.AreEqual(game.CurrentFrame, 1);
+        }
+
+        [TestMethod]
+        public void IndexBehavesTenThrows()
+        {
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Score();
+
+            Assert.AreEqual(game.CurrentFrame, 10);
+        }
+
+        [TestMethod]
+        public void FullTestGame()
+        {
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Roll(1);
+            game.Score();
+
+            Assert.AreEqual(game.Done(), true);
+        }
     }
 }
