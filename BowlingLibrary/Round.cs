@@ -10,7 +10,6 @@ namespace BowlingLibrary
         private bool _isBonus;
         private int _currentFrame;
         private bool _isComplete;
-        private bool _isBonus;
 
 
         public Round()
@@ -41,11 +40,6 @@ namespace BowlingLibrary
         {
             get { return _isBonus; }
             private set { _isBonus = value; }
-        }
-
-        private bool BonusRound()
-        {
-            return (pinFalls[18] + pinFalls[19] == 10);
         }
 
         public void Roll(int pins) 

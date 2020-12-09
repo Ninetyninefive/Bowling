@@ -33,15 +33,6 @@ namespace BowlingLibrary.UnitTest
         }
 
         [TestMethod]
-        public void ReturnsCorrectGameFrameStrike()
-        {
-            game.Roll(10);
-
-            Assert.AreEqual(game.CurrentFrame, 2);
-        }
-
-
-        [TestMethod]
         public void ReturnsCorrectAmmount()
         {
             game.Roll(8);
