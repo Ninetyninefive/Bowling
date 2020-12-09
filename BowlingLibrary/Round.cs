@@ -56,7 +56,7 @@ namespace BowlingLibrary
 
                 _pinFalls[_rollCounter] = pins;
                 _rollCounter++;
-                CurrentFrame++;
+                _currentFrame++;
         }
 
         private bool IsStrike(int frameIndex)
@@ -87,26 +87,26 @@ namespace BowlingLibrary
 
         public bool Done()
         {
-            if(_rollCounter > 10 &&  CurrentFrame > 17 && !TenthFrameBonus())
+            if(_rollCounter > 12)
             {
-                return _isComplete = true;
+                if (CurrentFrame > 19 && !TenthFrameBonus())
+                {
+                    return _isComplete = true;
+                }
+                if (CurrentFrame > 19 && TenthFrameBonus())
+                {
+                    return _isComplete = false;
+                }
+                if (CurrentFrame > 18 && TenthFrameBonus())
+                {
+                    return _isComplete = false;
+                }
+                if (_rollCounter > 19 || TenthFrameBonus() && _currentFrame > 19)
+                {
+                    return _isComplete = true;
+                }
             }
-            if (_rollCounter > 10 && CurrentFrame > 19 && TenthFrameBonus())
-            {
-                return _isComplete = true;
-            }
-            if (_rollCounter > 10 && CurrentFrame > 18 && TenthFrameBonus())
-            {
-                return _isComplete = false;
-            }
-            if (_rollCounter > 19 || TenthFrameBonus() && _currentFrame > 19)
-            {
-                return _isComplete = true;
-            }
-            else
-            {
-                return _isComplete;
-            }
+            return _isComplete;
         }
 
         public int Score()
